@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useRouter } from "next/navigation";
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/components/UI/Button';
 import Input from '@/components/UI/Input';
@@ -16,9 +16,16 @@ import toast from 'react-hot-toast';
 type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm = () => {
+  const session = useSession()
   const router = useRouter()
   const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (session?.status === 'authenticated') {
+      router.push('/users')
+    }
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
@@ -75,7 +82,7 @@ const AuthForm = () => {
         }
 
         if (callback?.ok && !callback?.error) {
-          router.push('/conversations')
+          router.push('/users')
         }
       })
       .finally(() => setIsLoading(false))
