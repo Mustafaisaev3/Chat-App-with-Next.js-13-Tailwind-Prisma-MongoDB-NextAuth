@@ -96,13 +96,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, isDark, onClose, children }) => {
                     type="button"
                     className="
                       rounded-md 
-                      bg-white 
+                      bg-transparent
                       text-gray-400 
                       hover:text-gray-500 
-                      focus:outline-none 
-                      focus:ring-2 
-                      focus:ring-indigo-500 
-                      focus:ring-offset-2
+                      focus:ring-[#377b71]
                     "
                     onClick={onClose}
                   >
