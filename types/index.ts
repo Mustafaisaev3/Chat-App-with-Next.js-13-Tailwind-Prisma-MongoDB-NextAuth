@@ -11,3 +11,4 @@ export type FullConversationType = Conversation & {
 };
 
 '#367b71'
+'#52b6a7 - hover'

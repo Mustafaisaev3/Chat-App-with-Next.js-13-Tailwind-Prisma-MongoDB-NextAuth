@@ -80,7 +80,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         transition
         cursor-pointer
         `,
-        selected ? 'bg-[#4a4a4a]' : 'bg-[#367b71]'
+        selected ? 'bg-[#367b71]' : 'bg-[#3a3a3a] '
       )}
     >
       <Avatar user={otherUser} />
@@ -108,7 +108,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
               truncate 
               text-sm
               `,
-              hasSeen ? 'text-[#2d2d2d]' : 'text-[#2d2d2d] font-medium'
+              hasSeen ? 'text-white' : 'text-white font-medium'
             )}>
               {lastMessageText}
             </p>

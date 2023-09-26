@@ -35,7 +35,6 @@ const ConversationList: React.FC<ConversationListProps> = ({
         overflow-y-auto 
         border-r 
         bg-[#3a3a3a]
-        border-gray-200 
       `, isOpen ? 'hidden' : 'block w-full left-0')
     }>
         <div className="px-5">
