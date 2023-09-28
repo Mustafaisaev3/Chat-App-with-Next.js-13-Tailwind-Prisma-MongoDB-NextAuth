@@ -7,8 +7,13 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'gallery': 'repeat(auto-fill, minmax(200px, 1fr))',
+      }
+    },
   },
   plugins: [],
 }
 export default config
+

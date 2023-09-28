@@ -47,6 +47,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({
                 h-6 
                 w-6 
                 shrink-0
+                text-[#367b71]
             `,
                 active && 'text-white'
             )}
