@@ -17,11 +17,13 @@ const Avatar: React.FC<AvatarProps> = ({ user }) => {
     <div className="relative">
       <div className="
         relative 
-        inline-block 
+        flex
+        items-center
+        justify-center
         rounded-full 
         overflow-hidden
-        h-9 
-        w-9 
+        h-7 
+        w-7 
         md:h-11 
         md:w-11
       ">
