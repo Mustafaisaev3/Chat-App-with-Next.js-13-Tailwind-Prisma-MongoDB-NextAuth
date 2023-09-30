@@ -1,11 +1,12 @@
 import ImageGrid from "@/components/gallery/ImageGrid"
 import getCurrentUser from "../actions/getCurrentUser"
+import getGalleryImages from "../actions/getGalleryImages"
 
 const Gallery = async () => {
   const currentUser = await getCurrentUser()
 
   return (
-    <div className="lg:block h-full bg-[#2a2a2a]">
+    <div className="lg:block h-full min-h-screen bg-[#2a2a2a]">
       <ImageGrid currentUser={currentUser!}/>
     </div>
   )

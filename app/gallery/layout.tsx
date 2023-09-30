@@ -10,7 +10,7 @@ export default async function GalleryLayout({
   return (
     // @ts-ignore
     <Sidebar>
-      <div className="h-full">
+      <div className="h-full min-h-screen">
         {children}
       </div>
     </Sidebar>

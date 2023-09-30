@@ -2,13 +2,17 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import clsx from "clsx";
+import { UserWithGalleryType } from '@/types';
+import GalleryImageModal from './GalleryImageModal';
 
 interface ImageItemProps {
+    currentUser: UserWithGalleryType
     image: any,
     onOpen?: any
 }
 
-const ImageItem: React.FC<ImageItemProps> = ({ image, onOpen }) => {
+const ImageItem: React.FC<ImageItemProps> = ({ image, onOpen, currentUser }) => {
+  const [imageModalOpen, setImageModalOpen] = useState(false)
   const [span, setSpan] = useState<number | null>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
@@ -25,10 +29,11 @@ const ImageItem: React.FC<ImageItemProps> = ({ image, onOpen }) => {
           mb-[10px]
         `,
           span ? 'block' : 'hidden'
-        )} 
+        )}
         style={{gridRowEnd: span ? `span ${span}`: ''}}
-        onClick={() => onOpen(true)}
+        onClick={() => setImageModalOpen(true)}
     >
+        <GalleryImageModal src={image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
         <img 
             ref={imageRef}
             src={image} 
