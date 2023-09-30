@@ -33,10 +33,10 @@ const ImageItem: React.FC<ImageItemProps> = ({ image, onOpen, currentUser }) => 
         style={{gridRowEnd: span ? `span ${span}`: ''}}
         onClick={() => setImageModalOpen(true)}
     >
-        <GalleryImageModal src={image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
+        <GalleryImageModal image={image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} />
         <img 
             ref={imageRef}
-            src={image} 
+            src={image.imageUrl} 
             alt="image" 
             className='w-full row-end-auto col-end-auto rounded-md hover:opacity-[0.5] cursor-pointer'
         />

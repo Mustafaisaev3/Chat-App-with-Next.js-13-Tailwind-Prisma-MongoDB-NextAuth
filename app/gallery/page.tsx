@@ -4,7 +4,7 @@ import getGalleryImages from "../actions/getGalleryImages"
 
 const Gallery = async () => {
   const currentUser = await getCurrentUser()
-
+  console.log(currentUser, 'sdsdsd')
   return (
     <div className="lg:block h-full min-h-screen bg-[#2a2a2a]">
       <ImageGrid currentUser={currentUser!}/>

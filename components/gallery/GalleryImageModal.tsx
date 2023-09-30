@@ -1,5 +1,7 @@
 'use client';
 
+import axios from 'axios'
+import { useRouter } from 'next/navigation';
 import Modal from '@/components/modals/Modal';
 import Image from 'next/image';
 import { MdDelete, MdFileDownload } from 'react-icons/md'
@@ -9,20 +11,28 @@ import { saveAs } from 'file-saver'
 interface GalleryImageModalProps {
   isOpen?: boolean;
   onClose: () => void;
-  src?: string | null;
+  image?: any | null;
 }
 
 const GalleryImageModal: React.FC<GalleryImageModalProps> = ({ 
   isOpen, 
   onClose, 
-  src
+  image
 }) => {
-  if (!src) {
+  const router = useRouter()
+
+  if (!image) {
     return null;
   }
 
   const handleDownloadImage = () => {
-    saveAs(src, 'image')
+    saveAs(image.imageUrl, 'image')
+  }
+
+  const handleDeleteImage = () => {
+    axios.delete(`/api/images/${image.id}`)
+      .then(() => onClose())
+      .finally(() => router.refresh())
   }
 
   return (
@@ -32,18 +42,18 @@ const GalleryImageModal: React.FC<GalleryImageModalProps> = ({
           className="object-contain !static" 
           fill 
           alt="Image" 
-          src={src}
+          src={image.imageUrl}
         />
         <div className='w-full h-auto flex items-center justify-center gap-4 pt-4'>
             <div className='w-auto h-auto p-2 bg-[#3a3a3a] rounded-md cursor-pointer' onClick={handleDownloadImage}>
-                <MdFileDownload size={30} color={'green'} />
+                <MdFileDownload size={30} color={'#19ff19'} />
+            </div>
+            <div className='w-auto h-auto p-2 bg-[#3a3a3a] rounded-md cursor-pointer' onClick={handleDeleteImage}>
+                <MdDelete size={30} color={'#ff3c3c'} />
             </div>
             <div className='w-auto h-auto p-2 bg-[#3a3a3a] rounded-md cursor-pointer'>
-                <MdDelete size={30} color={'red'} />
-            </div>
-            <div className='w-auto h-auto p-2 bg-[#3a3a3a] rounded-md cursor-pointer'>
-                <a href={src} download target="_blank">
-                    <BsArrowsFullscreen size={30} color={'blue'} />
+                <a href={image.imageUrl} download target="_blank">
+                    <BsArrowsFullscreen size={30} color={'#0087ff'} />
                 </a>
             </div>
         </div>
