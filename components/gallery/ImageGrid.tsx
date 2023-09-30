@@ -1,6 +1,8 @@
 'use client'
 
-import React from 'react'
+import { User } from '@prisma/client'
+import React, { useState } from 'react'
+import ImageModal from '@/components/modals/ImageModal'
 import ImageItem from './ImageItem'
 
 const imgArr = [
@@ -29,13 +31,26 @@ const imgArr = [
   'https://images.unsplash.com/photo-1502989642968-94fbdc9eace4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MnwxMDY1OTc2fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60',
 ]
 
-const ImageGrid = () => {
+interface ImageGridProps {
+  currentUser: User
+}
+
+const ImageGrid: React.FC<ImageGridProps> = ({ currentUser }) => {
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+
   return (
-    <div className='w-full h-full flex flex-col sm:grid grid-cols-gallery auto-rows-[10px] gap-x-[10px] p-4 overflow-auto'>
-      {imgArr.map((img, id) => {
-        return <ImageItem image={img} key={id} />
-      })}
-    </div>
+    <>
+      <ImageModal 
+        currentUser={currentUser}
+        isOpen={isImageModalOpen}
+        onClose={() => setIsImageModalOpen(false)}
+      />
+      <div className='w-full h-full flex flex-col sm:grid grid-cols-gallery auto-rows-[10px] gap-x-[10px] p-4 overflow-auto'>
+        {imgArr.map((img, id) => {
+          return <ImageItem image={img} key={id} onOpen={setIsImageModalOpen} />
+        })}
+      </div>
+    </>
   )
 }
 

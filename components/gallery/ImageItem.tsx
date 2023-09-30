@@ -4,10 +4,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from "clsx";
 
 interface ImageItemProps {
-    image: any
+    image: any,
+    onOpen?: any
 }
 
-const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
+const ImageItem: React.FC<ImageItemProps> = ({ image, onOpen }) => {
   const [span, setSpan] = useState<number | null>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
@@ -26,12 +27,13 @@ const ImageItem: React.FC<ImageItemProps> = ({ image }) => {
           span ? 'block' : 'hidden'
         )} 
         style={{gridRowEnd: span ? `span ${span}`: ''}}
+        onClick={() => onOpen(true)}
     >
         <img 
             ref={imageRef}
             src={image} 
             alt="image" 
-            className='w-full row-end-auto col-end-auto rounded-md '
+            className='w-full row-end-auto col-end-auto rounded-md hover:opacity-[0.5] cursor-pointer'
         />
     </div>
   )
