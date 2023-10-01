@@ -3,12 +3,11 @@ import GalleryTopbar from './GalleryTopbar'
 import { UserWithGalleryType } from '@/types'
 import getCurrentUser from '@/app/actions/getCurrentUser'
 
-// interface ImageGridProps {
-//   currentUser: UserWithGalleryType
-// }
+interface ImageGridProps {
+  currentUser: UserWithGalleryType
+}
 
-const ImageGrid = async () => {
-  const currentUser = await getCurrentUser() as UserWithGalleryType
+const ImageGrid: React.FC<ImageGridProps> = ({ currentUser }) => {
   const images = currentUser?.images || []
   
   return (
